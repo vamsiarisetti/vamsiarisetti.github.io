@@ -19,6 +19,7 @@ body::before {
   content: "";
   position: fixed;
   background: #040404 url("../img/bg.jpg") top right no-repeat;
+  background: linear-gradient(180deg, rgb(62 58 58) 0%, #210431 100%) top right no-repeat;
   background-size: cover;
   left: 0;
   right: 0;
@@ -133,7 +134,8 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   top: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.9);
+  /* background: rgba(0, 0, 0, 0.9); */
+  background: linear-gradient(180deg, rgb(62 58 58) 0%, #210431 100%);
 }
 #header.header-top .social-links, #header.header-top h2 {
   display: none;
@@ -249,7 +251,8 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  /* background: rgba(0, 0, 0, 0.9); */
+  background: linear-gradient(180deg, rgb(62 58 58) 0%, #210431 100%);
   transition: 0.3s;
   z-index: 999;
   margin-top: 0;
@@ -302,7 +305,8 @@ section.section-show {
   padding-bottom: 45px;
 }
 section .container {
-  background: rgba(0, 0, 0, 0.9);
+  /* background: rgba(0, 0, 0, 0.9); */
+  background: linear-gradient(180deg, rgb(62 58 58) 0%, #210431 100%);
   padding: 30px;
 }
 @media (max-width: 768px) {
