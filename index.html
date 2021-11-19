@@ -41,17 +41,55 @@
     crossorigin="anonymous"></script>
   <script>
     function SubForm (){
-    $.ajax({
-      url:'https://script.google.com/macros/s/AKfycbyHU9V9hKCQI4if3QjRxMGUsAtkmoA2XJu3B9ujmNGblmz6qrH8J93nNwo6-CsPoccMzA/exec',
-        type:'post',
-        data:$("#myForm").serializeArray(),
-        success: function(){
-          alert("Form Data Submitted :)")
-        },
-        error: function(){
-          alert("There was an error :(")
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let subject = document.getElementById("subject").value;
+      let message = document.getElementById("message").value;
+      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+      if((name !== null && name !== "" && name !== 'undefined') &&
+          (email !== null && email !== "" && email !== 'undefined') &&
+          (subject !== null && subject !== "" && subject !== 'undefined') &&
+          (message != null && message !== "" && message !== 'undefined') &&
+          regex.test(email))
+      {
+        $.ajax({
+          url:'https://script.google.com/macros/s/AKfycbyHU9V9hKCQI4if3QjRxMGUsAtkmoA2XJu3B9ujmNGblmz6qrH8J93nNwo6-CsPoccMzA/exec',
+            type:'post',
+            data:$("#myForm").serializeArray(),
+            success: function(){
+              document.getElementById("validationmessage").style.display = "none";
+              document.getElementById("errormessage").style.display = "none";
+              var success = document.getElementById("sucessmessage");
+              success.textContent = "Your message has been sent. Thank you!";
+              success.style.backgroundColor = "green";
+              success.style.display = "block";
+              document.getElementById("myForm").reset();
+            },
+            error: function(){
+              document.getElementById("validationmessage").style.display = "none";
+              document.getElementById("sucessmessage").style.display = "none";
+              var error = document.getElementById("errormessage");
+              error.textContent = "There is an error in sending message, please try later";
+              error.style.backgroundColor = "red";
+              error.style.display = "block";
+            }
+        });
+      } else {
+        document.getElementById("errormessage").style.display = "none";
+        document.getElementById("sucessmessage").style.display = "none";
+        var validateMsg = document.getElementById("validationmessage");
+        if (!regex.test(email))
+        {
+          validateMsg.textContent = "Please enter a valid email";
         }
-    });
+        else
+        {
+          validateMsg.textContent = "Please fill all the fields";
+        }
+        validateMsg.style.backgroundColor = "orange";
+        validateMsg.style.display = "block";
+      }
 }
   </script>
 </head>
@@ -972,7 +1010,8 @@
         <div class="my-3">
           <div class="loading">Loading</div>
           <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
+          <div class="sent-message"></div>
+          <div class="validate-message" id="validationmessage"></div>
         </div>
       </form>
       <div class="text-center"><button onclick="SubForm()">Send Message</button></div>
@@ -992,7 +1031,7 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
