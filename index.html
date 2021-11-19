@@ -50,8 +50,7 @@
       if((name !== null && name !== "" && name !== 'undefined') &&
           (email !== null && email !== "" && email !== 'undefined') &&
           (subject !== null && subject !== "" && subject !== 'undefined') &&
-          (message != null && message !== "" && message !== 'undefined') &&
-          regex.test(email))
+          (message != null && message !== "" && message !== 'undefined'))
       {
         $.ajax({
           url:'https://script.google.com/macros/s/AKfycbyHU9V9hKCQI4if3QjRxMGUsAtkmoA2XJu3B9ujmNGblmz6qrH8J93nNwo6-CsPoccMzA/exec',
@@ -79,13 +78,25 @@
         document.getElementById("errormessage").style.display = "none";
         document.getElementById("sucessmessage").style.display = "none";
         var validateMsg = document.getElementById("validationmessage");
-        if (!regex.test(email))
+        if (name === null || name === "" || name === 'undefined')
+        {
+          validateMsg.textContent = "name cannot be empty, please enter name";
+        }
+        else if (email === null || email === "" || email === 'undefined')
+        {
+          validateMsg.textContent = "email cannot be empty, please enter email";
+        }
+        else if (!regex.test(email))
         {
           validateMsg.textContent = "Please enter a valid email";
         }
-        else
+        else if (subject === null || subject === "" || subject === 'undefined')
         {
-          validateMsg.textContent = "Please fill all the fields";
+          validateMsg.textContent = "subject cannot be empty, please enter subject";
+        }
+        else if (message == null || message === "" || message === 'undefined')
+        {
+          validateMsg.textContent = "message cannot be empty, please enter message";
         }
         validateMsg.style.backgroundColor = "orange";
         validateMsg.style.display = "block";
