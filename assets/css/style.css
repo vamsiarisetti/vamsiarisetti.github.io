@@ -932,6 +932,14 @@ section .container {
   padding: 15px;
   font-weight: 600;
 }
+.contact .php-email-form .validate-message {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  background: #d39665;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
 .contact .php-email-form .loading {
   display: none;
   background: rgba(255, 255, 255, 0.08);
